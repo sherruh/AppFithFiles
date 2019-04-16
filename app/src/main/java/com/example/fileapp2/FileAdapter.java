@@ -12,14 +12,15 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 public class FileAdapter extends RecyclerView.Adapter<FileAdapter.ViewHolder> {
 
-    private File[] files;
+    ArrayList<File> files;
 
-    public FileAdapter(File[] files) {
+    public FileAdapter(ArrayList<File> files) {
         this.files = files;
     }
 
@@ -33,16 +34,16 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Picasso.get().load(files[i]).resize(200,200).into(viewHolder.imageView);
-        viewHolder.textName.setText(files[i].getName());
-        Date date=new Date(files[i].lastModified());
+        Picasso.get().load(files.get(i)).resize(200,200).into(viewHolder.imageView);
+        viewHolder.textName.setText(files.get(i).getName());
+        Date date=new Date(files.get(i).lastModified());
         SimpleDateFormat sdf=new SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault());
         viewHolder.textName.setText(sdf.format(date));
     }
 
     @Override
     public int getItemCount() {
-        return files.length;
+        return files.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

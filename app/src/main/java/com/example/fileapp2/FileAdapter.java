@@ -11,7 +11,9 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class FileAdapter extends RecyclerView.Adapter<FileAdapter.ViewHolder> {
 
@@ -34,7 +36,8 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.ViewHolder> {
         Picasso.get().load(files[i]).resize(200,200).into(viewHolder.imageView);
         viewHolder.textName.setText(files[i].getName());
         Date date=new Date(files[i].lastModified());
-        viewHolder.textName.setText(date.toString());
+        SimpleDateFormat sdf=new SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault());
+        viewHolder.textName.setText(sdf.format(date));
     }
 
     @Override

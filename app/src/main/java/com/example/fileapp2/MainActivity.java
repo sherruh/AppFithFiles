@@ -45,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
     private void getfiles() {
         File folder=new File(Environment.getExternalStorageDirectory(),"DCIM/Screenshots");
         if(folder.exists()){
-            files=folder.listFiles();
-            for(File file:files){
+            fileList=new ArrayList<>();
+            for(File file:folder.listFiles()){
+                if (!file.getName().endsWith(".jpg"))fileList.add(file);
                 Log.d("MyApp",file.getAbsolutePath());
             }
-            fileList=new ArrayList<>(Arrays.asList(folder.listFiles()));
             initAdapter();
         }
     }

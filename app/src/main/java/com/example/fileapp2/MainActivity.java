@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         if(folder.exists()){
             fileList=new ArrayList<>();
             for(File file:folder.listFiles()){
-                if (!file.getName().endsWith(".jpg"))fileList.add(file);
+                if (file.getName().endsWith(".jpg") || file.getName().endsWith(".png"))fileList.add(file);
                 Log.d("MyApp",file.getAbsolutePath());
             }
             initAdapter();
